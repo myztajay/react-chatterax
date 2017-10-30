@@ -1,7 +1,8 @@
 /*jshint esversion: 6 */
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-import { USER_CONNECTED } from '../Events';
+import { USER_CONNECTED, LOGOUT } from '../Events';
+import LoginForm from './LoginForm';
 
 const socketURL = 'localhost:4000';
 
@@ -28,22 +29,23 @@ class Layout extends Component{
   
   setUser = (user)=>{
     const { socket } = this.state
-    socket.emit('USER_CONNECTED', user);
+    socket.emit(USER_CONNECTED, user);
     this.setState({ user })
   }
   
   logout =()=>{
     const { socket } = this.state
-    socket.emit('LOGOUT');
+    socket.emit(LOGOUT);
     this.setState({ user:null });
     
   }
   
   render(){
+    const { socket } = this.state;
     const { title } = this.props;
     return(
       <div className='container'>
-        {title}
+        <LoginForm socket={socket} setUser={this.setUser.bind(this)}/>
       </div>
     )
   }
