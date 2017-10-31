@@ -11,6 +11,7 @@ class LoginForm extends Component {
   }
   
   setUser = ({user, isUser}) =>{
+    console.log(user, isUser);
     if(isUser){
       this.setError('User name taken')
     }else{
@@ -20,6 +21,7 @@ class LoginForm extends Component {
   
   handleSubmit = (e) =>{
       e.preventDefault();
+      console.log('submit went off')
       const  { socket } = this.props;
       const { nickname } = this.state;
       socket.emit(VERIFY_USER, nickname, this.setUser);
@@ -46,7 +48,7 @@ class LoginForm extends Component {
               id='nickname'
               value={ nickname }
               onChange={this.handleChange}
-              placeHolder={'Coolio McFly'}
+              placeholder={'Coolio McFly'}
             />
         </form>
       </div>
