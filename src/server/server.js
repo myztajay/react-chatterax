@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 var app = require('http').createServer();
-var io = require('socket.io')(app);
+var io = module.exports.io = require('socket.io')(app);
 const SocketManager = require('./SocketManager');
 
 const PORT = process.env.PORT || 4000;
@@ -10,6 +10,3 @@ app.listen(PORT, ()=>{
   console.log('connected to ' + PORT);
 });
 
-module.exports = {
-  io
-}; 

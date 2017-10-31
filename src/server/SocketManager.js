@@ -3,7 +3,7 @@ const io = require('./server.js').io;
 const { VERIFY_USER, USER_CONNECTED, LOGOUT } = require('../Events')
 
 const { createUser, createMessage, createChat} = require('../Factories')
-const connectedUser = {}
+let connectedUsers = {}
 
 module.exports = (socket)=>{
   console.log('this is the socket: '+socket.id);
@@ -20,6 +20,8 @@ module.exports = (socket)=>{
   socket.on(USER_CONNECTED, (user)=>{
     connectedUsers = addUser(connectedUsers, user)
     socket.user = user
+    
+    io.emit(USER_CONNECTED, connectedUsers)
     console.log(connectedUsers);
   })
   
