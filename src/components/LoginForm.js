@@ -13,7 +13,7 @@ class LoginForm extends Component {
   setUser = ({user, isUser}) =>{
     console.log(user, isUser);
     if(isUser){
-      this.setError('User name taken')
+      this.setError('User name taken');
     }else{
         this.props.setUser(user)
     }
@@ -50,6 +50,7 @@ class LoginForm extends Component {
               onChange={this.handleChange}
               placeholder={'Coolio McFly'}
             />
+            <div className="error">{error ? error:null}</div>
         </form>
       </div>
     )

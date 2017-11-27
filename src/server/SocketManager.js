@@ -20,7 +20,6 @@ module.exports = (socket)=>{
   socket.on(USER_CONNECTED, (user)=>{
     connectedUsers = addUser(connectedUsers, user)
     socket.user = user
-    
     io.emit(USER_CONNECTED, connectedUsers)
     console.log(connectedUsers);
   })
